@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+        integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+        crossorigin="anonymous" />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>Weather App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    {{>navbar}}
+
+    <!-----main - header-->
+    <div class="containe-fluid main_header">
+        <div class="row">
+            <div class="col-md-10 col-12 mx-auto">
+                <div class="main_container">
+                    <form class="temp_form">
+                        <input type="text" id="cityName" placeholder="Enter your City Name" autocomplete="off">
+                        <input type="submit" value="search" id="SubmitBtn">
+                    </form>
+                </div>
+                <div class="tempInformation">
+                    <div class="top_layer">
+                        <p id="day">Tuesday</p>
+                        <p id="today_date">13 OCT </p>
+                    </div>
+                    <div class="main_layer">
+                        <p id="city_name">Get Output Here</p>
+                        <div class="middle_layer data_hide">
+                            <p id="temp"><span id="temp_real_val">0</span><sup>o</sup>C</p>
+                            <p id="temp_status"><i class="fa fa-cloud" aria-hidden="true"></i> </p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- footer Code -->
+
+        {{>footer}}
+
+
+        <script src="js/main.js"></script>
+        <script>
+           
+            const getCurrentday = () => {
+                let weekday = new Array(7);
+                weekday[0] = 'Sunday';
+                weekday[1] = 'Monday';
+                weekday[2] = 'Tuesday';
+                weekday[3] = 'Wednesday';
+                weekday[4] = 'Thursday';
+                weekday[5] = 'Friday';
+                weekday[6] = 'Saturday';
+
+                let currentTime = new Date();
+                days = weekday[currentTime.getDay()];
+                const day = document.getElementById('day');
+
+                day.innerText = days ;    
+            }
+            const getCurrentTime = () => {
+                var months = [
+                'Jan',
+                'Feb'
+                'Mar'
+                'Apr'
+                'May'
+                'Jun'
+                'Jul'
+                'Aug'
+                'Sept'
+                'Oct'
+                'Nov'
+                'Dec'
+                ];
+
+                var now = new Date();
+                var hours = now getHours();
+                var mins = now getMinutes();
+
+                var month = months[now.getMonth() + 1];
+                var date = now.getDate();
+
+                var period = 'am';
+                if (hours > 11){
+                    period = 'pm';
+                    if (hours > 12) hours -= 12;
+                }
+                if (mins < 10){
+                    mins = '0' + mins;
+                }
+
+                return `${month} ${date} | ${hours}:${mins}:${period}`;
+
+                
+            }
+
+            getCurrentday();
+        </script>
+</body>
+
+</html>
